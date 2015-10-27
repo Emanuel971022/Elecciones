@@ -124,12 +124,17 @@ public class patrocinadorPanel extends javax.swing.JPanel {
         String dineros = txtDinero.getText();
         String sector = cmbSector.getSelectedItem().toString();
         
+        if(!isNumeric(dineros)){
+            Notificacion.alertaAtencion("Atención", "Sólo puede ingresar valores numericos en la cantidad a aportar");
+            return;
+        }
+        
         if(nit.isEmpty() || nombre.isEmpty() || dineros.isEmpty() || sector.isEmpty()){
             Notificacion.alertaAtencion("Atención", "Debe ingresar toda la información");
             return;
         }
         
-        if(elecciones.registrarPatrocinador(nit, nombre, dineros, sector)){
+        if(elecciones.registrarPatrocinador(nit, nombre, Integer.parseInt(dineros), sector)){
             Notificacion.alertaInformativo("Sistema", "Registro realizado con éxito");
             limpiarCampos();
         }else
@@ -141,6 +146,16 @@ public class patrocinadorPanel extends javax.swing.JPanel {
         txtNombre.setText("");
         txtDinero.setText("");
         cmbSector.setSelectedIndex(0);
+    }
+    
+    private boolean isNumeric(String dinero){
+        try{
+            int num = Integer.parseInt(dinero);
+        }catch(NumberFormatException ex){
+            return false;
+        }
+        
+        return true;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

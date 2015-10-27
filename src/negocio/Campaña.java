@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class Campaña {
     private ArrayList<Candidato> candidatos;
     private ArrayList<Patrocinador> patrocinadores;
+    private int patrocinioCampaña = 0;
     
     public Campaña(){
         this.candidatos = new ArrayList<>();
@@ -72,4 +73,30 @@ public class Campaña {
         
         return false;
     }
+    
+    protected String concatenarInversionistas(){
+        String inversionistas = "";
+        setPatrocinioCampaña(0);
+        
+        for(Patrocinador x: patrocinadores){
+            inversionistas += "Empresa: "+x.getNombre()+"\nDinero invertido: "+x.getDinero()+"\n\n";
+        }
+        
+        return inversionistas;
+    }
+    
+    protected void sumarPatrocinios(){
+        for(Patrocinador x: patrocinadores)
+            patrocinioCampaña = patrocinioCampaña + x.getDinero();
+    }
+
+    protected int getPatrocinioCampaña(){
+        return patrocinioCampaña;
+    }
+
+    protected void setPatrocinioCampaña(int patrocinioCampaña){
+        this.patrocinioCampaña = patrocinioCampaña;
+    }
+    
+    
 }

@@ -1,14 +1,15 @@
 package negocio;
 
 public class Patrocinador {
-    private String nit, nombre, dnero, sector;
+    private String nit, nombre, sector;
+    private int dinero;
     
     public Patrocinador(){}
     
-    public Patrocinador(String nit, String nombre, String dnero, String sector) {
+    public Patrocinador(String nit, String nombre, int dinero, String sector) {
         this.nit = nit;
         this.nombre = nombre;
-        this.dnero = dnero;
+        this.dinero = dinero;
         this.sector = sector;
     }
 
@@ -28,12 +29,12 @@ public class Patrocinador {
         this.nombre = nombre;
     }
 
-    public String getDnero() {
-        return dnero;
+    public int getDinero() {
+        return dinero;
     }
 
-    public void setDnero(String dnero) {
-        this.dnero = dnero;
+    public void setDinero(int dnero) {
+        this.dinero = dnero;
     }
 
     public String getSector() {

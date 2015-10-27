@@ -79,7 +79,7 @@ public class Eleccion {
      * @return Retorna true si la empresa no existe y se puede registrar
      */
     public boolean registrarPatrocinador(String nit, String nombre, 
-            String dineroAportado, String sectorAccionar){
+            int dineroAportado, String sectorAccionar){
         if(!verificarExistenciaPatrocinador(nit)){
             patrocinadores.add(new Patrocinador(nit, nombre, dineroAportado, sectorAccionar));
             return true;
@@ -126,6 +126,14 @@ public class Eleccion {
     public int obtenerApoyo(String idPartido){
         
         return 0;
+    }
+    
+    public String obtenerInfoInversionCampaña(String partido){
+        for(PartidoPolitico x: partidos_Politicos.keySet())
+            if(x.getId().equals(partido))
+                return x.agruparInversionCampaña()+"\nDinero invertido en la campaña: "+x.obtenerInversion();
+        
+        return "";
     }
     
     //-----------------------REQUERIMIENTOS OPERACIONALES----------------------//

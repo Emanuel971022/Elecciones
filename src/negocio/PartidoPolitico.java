@@ -10,7 +10,6 @@ public class PartidoPolitico {
     private Campaña campaña;
     private String id, nombre, fecha_Creacion, resumen;
     private boolean dineroPublico;
-    private int apoyoCampañas;
 
     public PartidoPolitico(String id){
         this.id = id;
@@ -50,12 +49,14 @@ public class PartidoPolitico {
         return campaña.registrarPatrocinador(patrocinador);
     }
     
-    public void setApoyo(int cantidad){
-        apoyoCampañas = apoyoCampañas+cantidad;
+    protected String agruparInversionCampaña(){
+        return campaña.concatenarInversionistas();
     }
     
-    public int getApoyo(){
-        return apoyoCampañas;
+    protected int obtenerInversion(){
+        campaña.sumarPatrocinios();
+        
+        return campaña.getPatrocinioCampaña();
     }
     
     //-----------------------REQUERIMIENTOS OPERACIONALES----------------------//
