@@ -96,13 +96,13 @@ public class Eleccion {
      * @param discurso Discurso para enredar a la gente
      * @return Retorna true si no existe un candidato igual y lo registra.
      */
-    public boolean registrarCandidato(String idPartido, String ccMiembro, 
+    public boolean registrarCandidato(String idPartido, String ccMiembro, String destino,
             String fechaPostulacion, String discurso){
         Miembro miembro = obtenerMiembro(ccMiembro);
         
         for(PartidoPolitico x: partidos_Politicos.keySet())
             if(x.getId().equals(idPartido) && miembro != null)
-                return x.registrarCandidato(miembro, fechaPostulacion, discurso);
+                return x.registrarCandidato(destino, miembro, fechaPostulacion, discurso);
         
         return false;
     }
@@ -134,6 +134,16 @@ public class Eleccion {
                 return x.agruparInversionCampaña()+"\nDinero invertido en la campaña: "+x.obtenerInversion();
         
         return "";
+    }
+    
+    public String candidatosPorDestinoTodosPartidos(String destino){
+        String postulados = "";
+        
+        for(PartidoPolitico x: partidos_Politicos.keySet())
+            if(!x.candidatosPorDestinoCampaña(destino).isEmpty())
+                postulados += "Partido politico: "+x.getNombre()+"\n\n"+x.candidatosPorDestinoCampaña(destino);
+        
+        return postulados;
     }
     
     //-----------------------REQUERIMIENTOS OPERACIONALES----------------------//

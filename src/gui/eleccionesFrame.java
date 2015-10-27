@@ -7,7 +7,7 @@ public class eleccionesFrame extends javax.swing.JFrame {
 
     private Eleccion elecciones;
     private JPanel eleccionesPanel, partidoPanel, miembroPanel, candidatoPanel,
-            patrocinadorPanel, patrocinadorCampañaPanel, inversionesPanel;
+            patrocinadorPanel, patrocinadorCampañaPanel, inversionesPanel, candidatosDestinoPanel;
     
     public eleccionesFrame() {
         initComponents();
@@ -34,6 +34,8 @@ public class eleccionesFrame extends javax.swing.JFrame {
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
+        jMenuItem8 = new javax.swing.JMenuItem();
 
         jMenuItem5.setText("jMenuItem5");
 
@@ -122,6 +124,18 @@ public class eleccionesFrame extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
+        jMenu6.setText("II Previo");
+
+        jMenuItem8.setText("Consultar candidatos por destino");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem8);
+
+        jMenuBar1.add(jMenu6);
+
         setJMenuBar(jMenuBar1);
 
         pack();
@@ -187,6 +201,14 @@ public class eleccionesFrame extends javax.swing.JFrame {
         montar();
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        removerPanel();
+        candidatosDestinoPanel = new candidatosDestinoPanel(elecciones);
+        
+        getContentPane().add(candidatosDestinoPanel);
+        montar();
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
     private void removerPanel(){
         if(eleccionesPanel != null)
             remove(eleccionesPanel);
@@ -208,6 +230,9 @@ public class eleccionesFrame extends javax.swing.JFrame {
         
         if(inversionesPanel != null)
             remove(inversionesPanel);
+        
+        if(candidatosDestinoPanel != null)
+            remove(candidatosDestinoPanel);
     }
     
     private void montar(){
@@ -250,6 +275,7 @@ public class eleccionesFrame extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
@@ -258,6 +284,7 @@ public class eleccionesFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jmHome;
     // End of variables declaration//GEN-END:variables
 }

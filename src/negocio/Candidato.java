@@ -33,4 +33,13 @@ public class Candidato extends Miembro{
     public void setDiscurso(String discurso) {
         this.discurso = discurso;
     }
+    
+    public String toString(){
+        return "CC: "+getCc()+
+             "\nNombre: "+getNombre()+
+             "\nTelefono: "+getTelefono()+
+             "\nGustos: "+getGustos()+
+             "\nFecha de postulación: "+getFecha_Postulacion()+
+             "\nDiscurso: "+getDiscurso()+"\n\n";
+    }
 }

@@ -1,33 +1,41 @@
 package negocio;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * 
  * @author Estudiante
  */
 public class Campaña {
-    private ArrayList<Candidato> candidatos;
+    private HashMap<String, ArrayList<Candidato>> candidatos;
     private ArrayList<Patrocinador> patrocinadores;
     private int patrocinioCampaña = 0;
     
     public Campaña(){
-        this.candidatos = new ArrayList<>();
+        this.candidatos = new HashMap<>();
         this.patrocinadores = new ArrayList<>();
     }
     
     /**
      * Registra un candidato en para las elecciones.
+     * @param destino El puesto al que aspira el candidato en las elecciones.
      * @param miembro Objeto con toda la información del miembro del partido politico
      * @param fechaPostulacion Fecha de postulación a la candidatura
      * @param discurso Discurso convincente. :v
      * @return Retorna true si no existe un candidato con el mismo documento.
      */
-    protected boolean registrarCandidato(Miembro miembro, String fechaPostulacion,
-            String discurso){
+    protected boolean registrarCandidato(String destino, Miembro miembro, 
+            String fechaPostulacion, String discurso){
         if(!verificarExistenciaCandidato(miembro.getCc())){
-            candidatos.add(new Candidato(miembro.getCc(), miembro.getNombre(), 
+            if(!candidatos.containsKey(destino)){
+                candidatos.put(destino, new ArrayList<Candidato>());
+            }
+            
+            ArrayList<Candidato> candidato = candidatos.get(destino);
+            candidato.add(new Candidato(miembro.getCc(), miembro.getNombre(), 
                     miembro.getTelefono(), miembro.getGustos(), fechaPostulacion, discurso));
+            
             return true;
         }
                 
@@ -48,14 +56,26 @@ public class Campaña {
         return false;
     }
     
+    protected String candidatosPorDestino(String destino){
+        String postulados = "";
+        
+        ArrayList<Candidato> cand = candidatos.get(destino);
+        if(cand != null)
+            for(Candidato x: cand)
+                postulados += x.toString();
+        
+        return postulados;
+    }
+    
     /**
      * Verifica si el candidato a consultar existe
      * @param ccCandidato CC del candidato a consultar
      * @return Retorna true si encuentra a alguien registrado con la misma CC.
      */
     private boolean verificarExistenciaCandidato(String ccCandidato){
-        for(Candidato x: candidatos)
-            if(x.getCc().equals(ccCandidato))
+        for(String x: candidatos.keySet())
+            for(Candidato y: candidatos.get(x))
+                if(y.getCc().equals(ccCandidato))
                     return true;
         
         return false;

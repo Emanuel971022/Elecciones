@@ -34,9 +34,9 @@ public class PartidoPolitico {
      * @return Retorna lo que pasa en el metodo registrarCandidato de la clase
      * Campaña
      */
-    protected boolean registrarCandidato(Miembro miembro, String fechaPostulacion,
-            String discurso){
-        return campaña.registrarCandidato(miembro, fechaPostulacion, discurso);
+    protected boolean registrarCandidato(String destino, Miembro miembro, 
+            String fechaPostulacion, String discurso){
+        return campaña.registrarCandidato(destino, miembro, fechaPostulacion, discurso);
     }
     
     /**
@@ -57,6 +57,10 @@ public class PartidoPolitico {
         campaña.sumarPatrocinios();
         
         return campaña.getPatrocinioCampaña();
+    }
+    
+    protected String candidatosPorDestinoCampaña(String destino){
+        return campaña.candidatosPorDestino(destino);
     }
     
     //-----------------------REQUERIMIENTOS OPERACIONALES----------------------//
