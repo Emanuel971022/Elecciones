@@ -1,13 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package negocio;
 
 /**
- *
- * @author Estudiante
+ * Los candidatos son las cartas en una campaña de un partido politico en unas 
+ * elecciones, sin importan cuales sean estas, estos deben ser miembros del partido
+ * politico, por eso heredan la información de los miembros y a su vez se añade la 
+ * fecha de postulación y el discurso con el que intenta convencer al pueblo.
+ * @author Emanuel Martínez Pinzón
+ * @version 2.0
  */
 public class Candidato extends Miembro{
     private String fecha_Postulacion, discurso;

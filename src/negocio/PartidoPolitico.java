@@ -5,16 +5,16 @@
  */
 package negocio;
 
+import java.util.Objects;
+
 /**
  *
  * @author Estudiante
  */
 public class PartidoPolitico {
+    private Campaña campaña;
     private String id, nombre, fecha_Creacion, resumen;
     private boolean dineroPublico;
-    private Miembro[] miembros;
-    private Campaña campaña;
-    private int indice;
     private int apoyoCampañas;
 
     public PartidoPolitico(String id, String nombre, String fecha_Creacion, String resumen, boolean dineroPublico) {
@@ -23,17 +23,12 @@ public class PartidoPolitico {
         this.fecha_Creacion = fecha_Creacion;
         this.resumen = resumen;
         this.dineroPublico = dineroPublico;
-        miembros = new Miembro[10];
         campaña = new Campaña();
     }
     
     //-----------------------REQUERIMIENTOS FUNCIONALES------------------------//
     public boolean registrarMiembro(String cc, String nombre, String telefono, String gustos){
-        if(indice < miembros.length && miembros[indice] == null){
-            miembros[indice] = new Miembro(cc, nombre, telefono, gustos);
-            indice++;
-            return true;
-        }
+        
         
         return false;
     }
@@ -58,9 +53,6 @@ public class PartidoPolitico {
     
     //-----------------------REQUERIMIENTOS OPERACIONALES----------------------//
     public boolean verificarExistenciaMiembro(String cc){
-        for(Miembro x: miembros)
-            if(x != null && x.getCc().equals(cc))
-                return true;
         
         return false;
     }
@@ -68,18 +60,11 @@ public class PartidoPolitico {
     public String concatenarMiembros(){
         String infoMiembros = "";
         
-        for(Miembro x: miembros)
-            if(x != null)
-                infoMiembros += x.getCc()+"-"+x.getNombre()+"~";
-        
         return infoMiembros;
     }
     
     protected String obtenerInfoMiembro(String cc){
-        for(Miembro x: miembros)
-            if(x != null && x.getCc().equals(cc))
-                return x.getCc()+"~"+x.getNombre()+"~"+x.getTelefono()+"~"+x.getGustos();
-        
+
         return "";
     }
 
@@ -122,4 +107,29 @@ public class PartidoPolitico {
     public void setDineroPublico(boolean dineroPublico) {
         this.dineroPublico = dineroPublico;
     }   
+    
+    //-----------------------REQUERIMIENTOS MODIFICADOS------------------------//
+    /**
+     * Se reescribe este metodo hashCode para que el tipo map se conserve.
+     * @return Retorna el hash que calcula en el metodo
+     */
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 61 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+    
+    /**
+     * Este metodo ha sido reescrito para que un objeto Carro con todos los parametros
+     * pueda ser comparado con un objeto Carro que solo tenga una placa y aun asi
+     * ambas placas siendo iguales se pueda dar verdadero.
+     * @param obj Object
+     * @return Retorna true si ambas placas son iguales
+     */
+    @Override
+    public boolean equals(Object obj) {
+        PartidoPolitico c = (PartidoPolitico) obj;
+        return c.getId().equals(getId());
+    }
 }
