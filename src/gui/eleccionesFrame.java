@@ -117,7 +117,7 @@ public class eleccionesFrame extends javax.swing.JFrame {
         partidoPanel = new partidoPanel(elecciones);
         
         getContentPane().add(partidoPanel);
-        pack();
+        montar();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jmHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmHomeActionPerformed
@@ -125,7 +125,7 @@ public class eleccionesFrame extends javax.swing.JFrame {
         eleccionesPanel = new eleccionesPanel(elecciones);
         
         getContentPane().add(eleccionesPanel);
-        pack();
+        montar();
     }//GEN-LAST:event_jmHomeActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -133,7 +133,7 @@ public class eleccionesFrame extends javax.swing.JFrame {
         candidatoPanel = new candidatoPanel(elecciones);
         
         getContentPane().add(candidatoPanel);
-        pack();
+        montar();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
@@ -141,7 +141,7 @@ public class eleccionesFrame extends javax.swing.JFrame {
         patrocinadorPanel = new patrocinadorPanel(elecciones);
         
         getContentPane().add(patrocinadorPanel);
-        pack();
+        montar();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -149,7 +149,7 @@ public class eleccionesFrame extends javax.swing.JFrame {
         miembroPanel = new miembroPanel(elecciones);
         
         getContentPane().add(miembroPanel);
-        pack();
+        montar();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
@@ -161,7 +161,7 @@ public class eleccionesFrame extends javax.swing.JFrame {
         patrocinadorCampañaPanel = new patrocinadorCampañaPanel(elecciones);
         
         getContentPane().add(patrocinadorCampañaPanel);
-        pack();
+        montar();
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void removerPanel(){
@@ -182,6 +182,11 @@ public class eleccionesFrame extends javax.swing.JFrame {
         
         if(patrocinadorCampañaPanel != null)
             remove(patrocinadorCampañaPanel);
+    }
+    
+    private void montar(){
+        pack();
+        setLocationRelativeTo(null);
     }
     
     public static void main(String args[]) {

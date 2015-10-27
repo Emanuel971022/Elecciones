@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package negocio;
 
 import java.util.Objects;
@@ -17,7 +12,12 @@ public class PartidoPolitico {
     private boolean dineroPublico;
     private int apoyoCampañas;
 
-    public PartidoPolitico(String id, String nombre, String fecha_Creacion, String resumen, boolean dineroPublico) {
+    public PartidoPolitico(String id){
+        this.id = id;
+    }
+    
+    public PartidoPolitico(String id, String nombre, String fecha_Creacion, 
+            String resumen, boolean dineroPublico) {
         this.id = id;
         this.nombre = nombre;
         this.fecha_Creacion = fecha_Creacion;
@@ -27,20 +27,27 @@ public class PartidoPolitico {
     }
     
     //-----------------------REQUERIMIENTOS FUNCIONALES------------------------//
-    public boolean registrarMiembro(String cc, String nombre, String telefono, String gustos){
-        
-        
-        return false;
+    /**
+     * Llama al metodo registrarCandidato para guardar un candidato en la campaña
+     * @param miembro Miembro del partido politico
+     * @param fechaPostulacion Fecha de postulación a candidato
+     * @param discurso Discurso politico de la candidatura
+     * @return Retorna lo que pasa en el metodo registrarCandidato de la clase
+     * Campaña
+     */
+    protected boolean registrarCandidato(Miembro miembro, String fechaPostulacion,
+            String discurso){
+        return campaña.registrarCandidato(miembro, fechaPostulacion, discurso);
     }
     
-    public boolean registrarCandidato(String cc, String fechaPostulacion, String discurso){
-        String info[] = obtenerInfoMiembro(cc).split("~");
-        
-        return campaña.registrarCandidato(cc, info[1], info[2], info[3], fechaPostulacion, discurso);
-    }
-    
-    public boolean registrarPatrocinador(String nit, String nombre, String dinero, String sector){
-        return campaña.registrarPatrocinador(nit, nombre, dinero, sector);
+    /**
+     * Registra un patrocinador en la campaña
+     * @param patrocinador Patrocinador de la campaña
+     * @return Retorna lo que pasa en el metodo registrarPatrocinador de la 
+     * clase Campaña
+     */
+    protected boolean registrarPatrocinador(Patrocinador patrocinador){
+        return campaña.registrarPatrocinador(patrocinador);
     }
     
     public void setApoyo(int cantidad){
@@ -52,22 +59,6 @@ public class PartidoPolitico {
     }
     
     //-----------------------REQUERIMIENTOS OPERACIONALES----------------------//
-    public boolean verificarExistenciaMiembro(String cc){
-        
-        return false;
-    }
-    
-    public String concatenarMiembros(){
-        String infoMiembros = "";
-        
-        return infoMiembros;
-    }
-    
-    protected String obtenerInfoMiembro(String cc){
-
-        return "";
-    }
-
     public String getId() {
         return id;
     }
@@ -108,7 +99,7 @@ public class PartidoPolitico {
         this.dineroPublico = dineroPublico;
     }   
     
-    //-----------------------REQUERIMIENTOS MODIFICADOS------------------------//
+    //----------------------------METODOS MODIFICADOS--------------------------//
     /**
      * Se reescribe este metodo hashCode para que el tipo map se conserve.
      * @return Retorna el hash que calcula en el metodo

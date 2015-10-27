@@ -10,6 +10,8 @@ package gui;
  * @author emanuel
  */
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import negocio.Eleccion;
 import util.Notificacion;
 
@@ -147,11 +149,15 @@ public class miembroPanel extends javax.swing.JPanel {
             Notificacion.alertaAtencion("Atención", "Debe ingresar todos los datos.");
         }
         
-        if(elecciones.registrarMiembro(partidos[0], cc, nombre, telefono, gustos)){
-            Notificacion.alertaInformativo("Sistema", "Se ha registrado el miembro del partido");
-            limpiarCampos();
-        }else
-            Notificacion.alertaError("Error", "No se ha podido registrar el miembro");
+        try{
+            if(elecciones.registrarMiembro(partidos[0], cc, nombre, telefono, gustos)){
+                Notificacion.alertaInformativo("Sistema", "Se ha registrado el miembro del partido");
+                limpiarCampos();
+            }else
+                Notificacion.alertaError("Error", "No se ha podido registrar el miembro");
+        }catch(Exception ex){
+            Notificacion.alertaError("Error", "Ya existe un miembro con esa misma información");
+        }
     }//GEN-LAST:event_cmdGuardarActionPerformed
 
     private void limpiarCampos(){
