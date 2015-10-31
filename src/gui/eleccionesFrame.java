@@ -7,7 +7,7 @@ public class eleccionesFrame extends javax.swing.JFrame {
 
     private Eleccion elecciones;
     private JPanel eleccionesPanel, partidoPanel, miembroPanel, candidatoPanel,
-            patrocinadorPanel, patrocinadorCampañaPanel, inversionesPanel, candidatosDestinoPanel;
+            patrocinadorPanel, patrocinadorCampañaPanel, inversionesPanel, candidatosDestinoPanel, votarPanel, rangoVotos;
     
     public eleccionesFrame() {
         initComponents();
@@ -36,6 +36,8 @@ public class eleccionesFrame extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
 
         jMenuItem5.setText("jMenuItem5");
 
@@ -134,6 +136,22 @@ public class eleccionesFrame extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem8);
 
+        jMenuItem9.setText("Votar");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem9);
+
+        jMenuItem10.setText("Ver rango por votos");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem10);
+
         jMenuBar1.add(jMenu6);
 
         setJMenuBar(jMenuBar1);
@@ -209,6 +227,22 @@ public class eleccionesFrame extends javax.swing.JFrame {
         montar();
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        removerPanel();
+        votarPanel = new votarPanel(elecciones);
+        
+        getContentPane().add(votarPanel);
+        montar();
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        removerPanel();
+        rangoVotos = new rangoVotos(elecciones);
+        
+        getContentPane().add(rangoVotos);
+        montar();
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
     private void removerPanel(){
         if(eleccionesPanel != null)
             remove(eleccionesPanel);
@@ -233,6 +267,12 @@ public class eleccionesFrame extends javax.swing.JFrame {
         
         if(candidatosDestinoPanel != null)
             remove(candidatosDestinoPanel);
+        
+        if(votarPanel != null)
+            remove(votarPanel);
+        
+        if(rangoVotos != null)
+            remove(rangoVotos);
     }
     
     private void montar(){
@@ -278,6 +318,7 @@ public class eleccionesFrame extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -285,6 +326,7 @@ public class eleccionesFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenuItem jmHome;
     // End of variables declaration//GEN-END:variables
 }

@@ -10,12 +10,14 @@ package negocio;
  */
 public class Candidato extends Miembro{
     private String fecha_Postulacion, discurso;
+    private int votos;
 
     public Candidato(String cc, String nombre, String telefono, String gustos, 
             String fecha_Postulacion, String discurso) {
         super(cc, nombre, telefono, gustos);
         this.fecha_Postulacion = fecha_Postulacion;
         this.discurso = discurso;
+        this.votos = 0;
     }
 
     public String getFecha_Postulacion() {
@@ -33,6 +35,14 @@ public class Candidato extends Miembro{
     public void setDiscurso(String discurso) {
         this.discurso = discurso;
     }
+
+    public int getVotos(){
+        return votos;
+    }
+
+    public void setVotos(int votos){
+        this.votos = votos;
+    }
     
     public String toString(){
         return "CC: "+getCc()+
@@ -40,6 +50,7 @@ public class Candidato extends Miembro{
              "\nTelefono: "+getTelefono()+
              "\nGustos: "+getGustos()+
              "\nFecha de postulación: "+getFecha_Postulacion()+
-             "\nDiscurso: "+getDiscurso()+"\n\n";
+             "\nDiscurso: "+getDiscurso()+
+             "\nVotos: "+getVotos()+"\n\n";
     }
 }

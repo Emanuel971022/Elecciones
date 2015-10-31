@@ -63,6 +63,14 @@ public class PartidoPolitico {
         return campaña.candidatosPorDestino(destino);
     }
     
+    protected String candidatosPorDestinoCampañaNombre(String destino){
+        return campaña.candidatosPorDestinoSoloNombre(destino);
+    }
+    
+    protected boolean registrarVoto(String destino, String candidato){
+        return campaña.registrarVoto(candidato, destino);
+    }
+    
     //-----------------------REQUERIMIENTOS OPERACIONALES----------------------//
     public String getId() {
         return id;

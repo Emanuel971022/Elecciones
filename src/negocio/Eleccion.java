@@ -146,6 +146,35 @@ public class Eleccion {
         return postulados;
     }
     
+    public String concatenarPartidosPorDestinoVotar(String destino){
+        String partidosPostulados = "";
+        
+        for(PartidoPolitico x: partidos_Politicos.keySet())
+            if(!x.candidatosPorDestinoCampañaNombre(destino).isEmpty())
+                partidosPostulados += x.getNombre()+"~";
+        
+        return partidosPostulados;
+    }
+    
+    public String concatenarCandidatosPorDestinoVotar(String destino, String partido){
+        String candidatosPostulados = "";
+        
+        for(PartidoPolitico x: partidos_Politicos.keySet())
+            if(!x.candidatosPorDestinoCampañaNombre(destino).isEmpty() && x.getNombre().equals(partido))
+                candidatosPostulados += x.candidatosPorDestinoCampañaNombre(destino);
+        
+        return candidatosPostulados;
+    }
+    
+    public boolean registrarVoto(String destino, String partido, String candidato){
+        for(PartidoPolitico x: partidos_Politicos.keySet())
+            if(x.getNombre().equals(partido)){
+                return x.registrarVoto(destino, candidato);
+            }
+        
+        return false;
+    }
+    
     //-----------------------REQUERIMIENTOS OPERACIONALES----------------------//
     /**
      * Concatena los partidos politicos registrados agrupandolos así: ID-Nombre

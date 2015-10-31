@@ -149,7 +149,6 @@ public class candidatoPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_cmdGuardarActionPerformed
 
     private void cmbPartidoPoliticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPartidoPoliticoActionPerformed
-        String partidos[] = elecciones.concatenarPartidos().split("-");
         String partido[] = cmbPartidoPolitico.getSelectedItem().toString().split("-");
         
         cargarComboMiembros(partido[0]);

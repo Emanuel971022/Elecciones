@@ -67,6 +67,32 @@ public class Campaña {
         return postulados;
     }
     
+    protected String candidatosPorDestinoSoloNombre(String destino){
+        String postulados = "";
+        
+        ArrayList<Candidato> cand = candidatos.get(destino);
+        if(cand != null)
+            for(Candidato x: cand)
+                postulados += x.getNombre()+"~";
+        
+        return postulados;
+    }
+    
+    protected boolean registrarVoto(String candidato, String destino){
+        for(String x: candidatos.keySet()){
+            if(x.equals(destino)){
+                ArrayList<Candidato> candi = candidatos.get(x);
+                for(Candidato y: candi){
+                    if(y.getNombre().equals(candidato)){
+                        y.setVotos(y.getVotos()+1);
+                    }
+                }
+            }
+        }
+        
+        return false;
+    }
+    
     /**
      * Verifica si el candidato a consultar existe
      * @param ccCandidato CC del candidato a consultar
