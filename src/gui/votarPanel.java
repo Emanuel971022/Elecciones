@@ -126,7 +126,11 @@ public class votarPanel extends javax.swing.JPanel {
 
     private void cmbPartidoPoliticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPartidoPoliticoActionPerformed
         String destino = cmbDestino.getSelectedItem().toString();
-        String partido = cmbPartidoPolitico.getSelectedItem().toString();
+        String partido = "";
+        
+        try{
+            partido = cmbPartidoPolitico.getSelectedItem().toString();
+        }catch(NullPointerException ex){}
         
         String candidatos[] = elecciones.concatenarCandidatosPorDestinoVotar(destino, partido).split("~");
         cmbCandidato.removeAllItems();

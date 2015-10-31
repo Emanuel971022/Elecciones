@@ -4,8 +4,9 @@ import java.util.HashMap;
 import java.util.ArrayList;
 
 /**
- *
- * @author emanuel
+ * Clase contenedora del negocio en el proyecto.
+ * @author Emanuel Martínez Pinzón
+ * @version 1.0
  */
 public class Eleccion {
     private final HashMap<PartidoPolitico, ArrayList<Miembro>> partidos_Politicos;
@@ -108,10 +109,10 @@ public class Eleccion {
     }
     
     /**
-     * 
-     * @param partido
-     * @param nit
-     * @return 
+     * Registra un patrocinador a la campaña que lleve un partido
+     * @param partido Norbre del partido a patrocinar
+     * @param nit Nit de la empresa patrocinadora
+     * @return Retorna true si puede registrar el patrocinador
      */
     public boolean registrarPatrocinadorCampaña(String partido, String nit){
         Patrocinador patrocinador = obtenerPatrocinador(nit);
@@ -123,11 +124,14 @@ public class Eleccion {
         return false;
     }
     
-    public int obtenerApoyo(String idPartido){
-        
-        return 0;
-    }
-    
+    /**
+     * Me permite conocer cuanto dinero se ha invertido en la campaña de un partido,
+     * muestra la cantidad invertida por cada una de las empresas y la suma de ese
+     * dinero.
+     * @param partido Partido politico del que se quiere conocer la inversión
+     * @return Retorna un String con la información de las inversiones por parte
+     * de las empresas.
+     */
     public String obtenerInfoInversionCampaña(String partido){
         for(PartidoPolitico x: partidos_Politicos.keySet())
             if(x.getId().equals(partido))
@@ -136,6 +140,11 @@ public class Eleccion {
         return "";
     }
     
+    /**
+     * Concatena los candidatos de un partido politico para un destino especial.
+     * @param destino Destino al que aspiran los candidatos a agrupar.
+     * @return Retorna un String con la información de los candidatos postulados.
+     */
     public String candidatosPorDestinoTodosPartidos(String destino){
         String postulados = "";
         
@@ -146,6 +155,12 @@ public class Eleccion {
         return postulados;
     }
     
+    /**
+     * Concatena los partidos con campaña para un destino administrativo,
+     * verifica si un partido tiene candidatos registrados para un puesto público.
+     * @param destino Destino al que aspiran los candidatos de los partidos
+     * @return Retorna un String con los partidos
+     */
     public String concatenarPartidosPorDestinoVotar(String destino){
         String partidosPostulados = "";
         
@@ -156,6 +171,12 @@ public class Eleccion {
         return partidosPostulados;
     }
     
+    /**
+     * Concatena los cantidatos registrados a un puesto público de la campaña
+     * @param destino Destino aspirado por los candidatos
+     * @param partido Partido del candidato
+     * @return Retorna un String con los candidatos postulados
+     */
     public String concatenarCandidatosPorDestinoVotar(String destino, String partido){
         String candidatosPostulados = "";
         
@@ -166,11 +187,17 @@ public class Eleccion {
         return candidatosPostulados;
     }
     
+    /**
+     * Registra un voto a algún candidato
+     * @param destino Destino al que aspira el candidato
+     * @param partido Partido del candidato
+     * @param candidato Nombre del candidato.
+     * @return Retorna true si registra el candidato por el que ha votado.
+     */
     public boolean registrarVoto(String destino, String partido, String candidato){
         for(PartidoPolitico x: partidos_Politicos.keySet())
-            if(x.getNombre().equals(partido)){
+            if(x.getNombre().equals(partido))
                 return x.registrarVoto(destino, candidato);
-            }
         
         return false;
     }

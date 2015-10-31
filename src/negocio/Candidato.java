@@ -6,7 +6,7 @@ package negocio;
  * politico, por eso heredan la información de los miembros y a su vez se añade la 
  * fecha de postulación y el discurso con el que intenta convencer al pueblo.
  * @author Emanuel Martínez Pinzón
- * @version 2.0
+ * @version 1.0
  */
 public class Candidato extends Miembro{
     private String fecha_Postulacion, discurso;

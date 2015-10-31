@@ -1,5 +1,10 @@
 package negocio;
 
+/**
+ * Plantilla de los patrocinadores de las campañas.
+ * @author Emanuel Martínez Pinzón
+ * @version 1.0
+ */
 public class Patrocinador {
     private String nit, nombre, sector;
     private int dinero;

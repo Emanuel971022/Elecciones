@@ -3,8 +3,10 @@ package negocio;
 import java.util.Objects;
 
 /**
- *
- * @author Estudiante
+ * Clase de los partidos politicos, guarda los metodos relacionados con el 
+ * concatacto con las clase Campaña.
+ * @author Emanuel Martínez Pinzón
+ * @version 1.0
  */
 public class PartidoPolitico {
     private Campaña campaña;
@@ -49,24 +51,48 @@ public class PartidoPolitico {
         return campaña.registrarPatrocinador(patrocinador);
     }
     
+    /**
+     * Ejecuta el metodo concatenarInversionistas() de la clase Campaña.
+     * @return Retorna lo que recibe de ese método.
+     */
     protected String agruparInversionCampaña(){
         return campaña.concatenarInversionistas();
     }
     
+    /**
+     * Suma los patrocinios y ejecuta el metodo obtenerInversion() de la clase Campaña.
+     * @return Retorna lo que recibe de ese método.
+     */
     protected int obtenerInversion(){
         campaña.sumarPatrocinios();
         
         return campaña.getPatrocinioCampaña();
     }
     
+    /**
+     * * Ejecuta el metodo candidatosPorDestinoCampaña() de la clase Campaña.
+     * @param destino Destino aspirado
+     * @return Retorna lo que recibe de ese método.
+     */
     protected String candidatosPorDestinoCampaña(String destino){
         return campaña.candidatosPorDestino(destino);
     }
     
+    /**
+     * Ejecuta el metodo candidatosPorDestinoSoloNombre() de la clase Campaña.
+     * @param destino Destino de los candidatos
+     * @return Retorna lo que recibe de ese método.
+     */
     protected String candidatosPorDestinoCampañaNombre(String destino){
         return campaña.candidatosPorDestinoSoloNombre(destino);
     }
     
+    /**
+     * * Ejecuta el metodo registrarVoto() de la clase Campaña.
+     * @param destino Destino del candidato
+     * @param candidato Nombre del candidato
+     * @return Retorna lo que recibe de ese método.
+     */
     protected boolean registrarVoto(String destino, String candidato){
         return campaña.registrarVoto(candidato, destino);
     }

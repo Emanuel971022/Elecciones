@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * 
+ * La clase campaña es una clase que guarda la información de la campaña de un partido 
+ * politico, tiene un HashMap con los candidatos agrupados por destino y un ArrayList con
+ * los patrocinadores de la campaña.
  * @author Estudiante
+ * @version 1.0
  */
 public class Campaña {
     private HashMap<String, ArrayList<Candidato>> candidatos;
@@ -28,9 +31,8 @@ public class Campaña {
     protected boolean registrarCandidato(String destino, Miembro miembro, 
             String fechaPostulacion, String discurso){
         if(!verificarExistenciaCandidato(miembro.getCc())){
-            if(!candidatos.containsKey(destino)){
+            if(!candidatos.containsKey(destino))
                 candidatos.put(destino, new ArrayList<Candidato>());
-            }
             
             ArrayList<Candidato> candidato = candidatos.get(destino);
             candidato.add(new Candidato(miembro.getCc(), miembro.getNombre(), 
@@ -56,6 +58,11 @@ public class Campaña {
         return false;
     }
     
+    /**
+     * Concatena la información de los candidatos a un destino de la campaña.
+     * @param destino Destino al que aspira el candidato
+     * @return Retorna la información de los candidatos
+     */
     protected String candidatosPorDestino(String destino){
         String postulados = "";
         
@@ -67,6 +74,11 @@ public class Campaña {
         return postulados;
     }
     
+    /**
+     * Concatena los nombres de los candidatos por destinos
+     * @param destino Destino aspirado
+     * @return Retorna un String con los nombres de los candidatos.
+     */
     protected String candidatosPorDestinoSoloNombre(String destino){
         String postulados = "";
         
@@ -78,17 +90,20 @@ public class Campaña {
         return postulados;
     }
     
+    /**
+     * Registra un voto al candidato.
+     * @param candidato Candidato
+     * @param destino Destino aspirado
+     * @return Retorna true cuando se registra el voto.
+     */
     protected boolean registrarVoto(String candidato, String destino){
-        for(String x: candidatos.keySet()){
-            if(x.equals(destino)){
-                ArrayList<Candidato> candi = candidatos.get(x);
-                for(Candidato y: candi){
+        for(String x: candidatos.keySet())
+            if(x.equals(destino))
+                for(Candidato y: candidatos.get(x))
                     if(y.getNombre().equals(candidato)){
                         y.setVotos(y.getVotos()+1);
+                        return true;
                     }
-                }
-            }
-        }
         
         return false;
     }
@@ -120,17 +135,23 @@ public class Campaña {
         return false;
     }
     
+    /**
+     * Concatena los inversionistas de la campaña
+     * @return Retorna la información de los inversionistas a la campaña.
+     */
     protected String concatenarInversionistas(){
         String inversionistas = "";
         setPatrocinioCampaña(0);
-        
-        for(Patrocinador x: patrocinadores){
+       
+        for(Patrocinador x: patrocinadores)
             inversionistas += "Empresa: "+x.getNombre()+"\nDinero invertido: "+x.getDinero()+"\n\n";
-        }
         
         return inversionistas;
     }
     
+    /**
+     * Suma la cantidad de dinero aportado a la campaña.
+     */
     protected void sumarPatrocinios(){
         for(Patrocinador x: patrocinadores)
             patrocinioCampaña = patrocinioCampaña + x.getDinero();
