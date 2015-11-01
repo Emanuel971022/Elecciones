@@ -202,6 +202,20 @@ public class Eleccion {
         return false;
     }
     
+    /**
+     * Muestra los candidatos por un rango de votos.
+     * @param rangoVotos Rango de votos a agrupar.
+     * @return Retorna la información de los candidatos.
+     */
+    public String mostrarVotosPorRango(String rangoVotos){
+        String votaciones = "";
+        
+        for(PartidoPolitico x: partidos_Politicos.keySet())
+            votaciones += x.mostrarVotosPorRango(rangoVotos);
+        
+        return votaciones;
+    }
+    
     //-----------------------REQUERIMIENTOS OPERACIONALES----------------------//
     /**
      * Concatena los partidos politicos registrados agrupandolos así: ID-Nombre

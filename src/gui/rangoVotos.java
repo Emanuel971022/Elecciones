@@ -20,18 +20,24 @@ public class rangoVotos extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        cmbRango = new javax.swing.JComboBox();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtAInfo = new javax.swing.JTextArea();
 
         jLabel1.setText("Rango de votos: ");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0 - 5 Votos", "6 - 10 Votos", "11 - 15 Votos", "16 votos en adelante" }));
+        cmbRango.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0 - 5 Votos", "6 - 10 Votos", "11 - 15 Votos", "16 votos en adelante" }));
+        cmbRango.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbRangoActionPerformed(evt);
+            }
+        });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtAInfo.setEditable(false);
+        txtAInfo.setColumns(20);
+        txtAInfo.setRows(5);
+        jScrollPane1.setViewportView(txtAInfo);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -45,7 +51,7 @@ public class rangoVotos extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, 0, 276, Short.MAX_VALUE)))
+                        .addComponent(cmbRango, 0, 276, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -54,7 +60,7 @@ public class rangoVotos extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbRango, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -63,12 +69,18 @@ public class rangoVotos extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cmbRangoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRangoActionPerformed
+        String rango = cmbRango.getSelectedItem().toString();
+        
+        txtAInfo.setText(elecciones.mostrarVotosPorRango(rango));
+    }//GEN-LAST:event_cmbRangoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox cmbRango;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea txtAInfo;
     // End of variables declaration//GEN-END:variables
 }

@@ -109,6 +109,29 @@ public class Campaña {
     }
     
     /**
+     * Agrupa los candidatos sin importar su destino en un rango de votos recibidos.
+     * @param rango Rango de votos a agrupar.
+     * @return Retorna un String con la información de los candidatos.
+     */
+    protected String mostrarVotosPorRango(String rango){
+        String votaciones = "";
+        
+        for(String x: candidatos.keySet())
+            for(Candidato y: candidatos.get(x))
+                if(rango.equals("0 - 5 Votos") && y.getVotos() >= 0 && y.getVotos() <= 5)
+                    votaciones += "Destino: "+x+"\n"+y.toString();
+                else if(rango.equals("6 - 10 Votos") && y.getVotos() >= 6 && y.getVotos() <= 10)
+                    votaciones += "Destino: "+x+"\n"+y.toString();
+                else if(rango.equals("11 - 15 Votos") && y.getVotos() >= 11 && y.getVotos() <= 15)
+                    votaciones += "Destino: "+x+"\n"+y.toString();
+                else if(rango.equals("16 votos en adelante") && y.getVotos() >= 16)
+                    votaciones += "Destino: "+x+"\n"+y.toString();
+            
+        return votaciones;
+    }
+    
+    //-------------------------REQUERIMIENTOS OPERACIONALES--------------------//
+    /**
      * Verifica si el candidato a consultar existe
      * @param ccCandidato CC del candidato a consultar
      * @return Retorna true si encuentra a alguien registrado con la misma CC.

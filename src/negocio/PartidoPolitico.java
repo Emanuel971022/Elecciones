@@ -30,6 +30,7 @@ public class PartidoPolitico {
     //-----------------------REQUERIMIENTOS FUNCIONALES------------------------//
     /**
      * Llama al metodo registrarCandidato para guardar un candidato en la campaña
+     * @param destino Destino al que aspira el candidato.
      * @param miembro Miembro del partido politico
      * @param fechaPostulacion Fecha de postulación a candidato
      * @param discurso Discurso politico de la candidatura
@@ -95,6 +96,15 @@ public class PartidoPolitico {
      */
     protected boolean registrarVoto(String destino, String candidato){
         return campaña.registrarVoto(candidato, destino);
+    }
+    
+    /**
+     * Ejecuta el metodo mostrarVotosRango() de la clase Campaña.
+     * @param rango Rango de votos
+     * @return Retorna lo que recibe de ese metodo.
+     */
+    protected String mostrarVotosPorRango(String rango){
+        return campaña.mostrarVotosPorRango(rango);
     }
     
     //-----------------------REQUERIMIENTOS OPERACIONALES----------------------//
